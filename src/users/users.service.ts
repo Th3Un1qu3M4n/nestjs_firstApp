@@ -1,10 +1,8 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { User, SerializedUser } from './interfaces/user.interface';
 import { CreateUserDTO } from './dto/create-user.dto';
-import { InjectRepository } from '@nestjs/typeorm';
 import { User as UserEntity } from 'src/typeorm/User';
-import { Repository } from 'typeorm';
 import { encodePasswrod } from 'src/utils/bcrypt';
 import { AppDataSource } from 'src/typeorm/AppDataSource';
 
@@ -42,6 +40,11 @@ export class UsersService {
     return userRepository.save(newUser);
   }
 
+  async findUsers() {
+    const userRepository = AppDataSource.getRepository(UserEntity);
+    console.log('searching username');
+    return (await userRepository.find()).map((user) => plainToClass(SerializedUser, user));
+  }
   findUserByUsername(username: string) {
     const userRepository = AppDataSource.getRepository(UserEntity);
     console.log('searching username');
