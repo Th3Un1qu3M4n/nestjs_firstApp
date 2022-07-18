@@ -3,10 +3,7 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Get,
-  HttpException,
-  HttpStatus,
   Inject,
-  NotFoundException,
   Param,
   Post,
   UseInterceptors,
@@ -24,7 +21,7 @@ export class UsersController {
 
   @Get()
   getUsers() {
-    return this.usersService.getUsers();
+    return this.usersService.findUsers();
   }
 
   @UseInterceptors(ClassSerializerInterceptor)

@@ -40,7 +40,7 @@ async function bootstrap() {
       console.error('Error during Data Source initialization', err);
     });
 
-  const sessionRepository = AppDataSource.getRepository(SessionEntity);
+  // const sessionRepository = AppDataSource.getRepository(SessionEntity);
   app.use(
     session({
       secret: config.session_secret,
@@ -49,7 +49,7 @@ async function bootstrap() {
       cookie: {
         maxAge: 60 * 1000,
       },
-      store: new TypeormStore({ limitSubquery: false }).connect(sessionRepository),
+      // store: new TypeormStore({ limitSubquery: false }).connect(sessionRepository),
     }),
   );
 
