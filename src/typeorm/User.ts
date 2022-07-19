@@ -19,4 +19,10 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column({
+    nullable: false,
+    default: 'user',
+  })
+  role: string;
 }

@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { ValidateUserMiddleware } from './middlewares/validate-user.middleware';
+import { isAdminMiddleware } from './middlewares/authorization';
 
 @Module({
   imports: [],
