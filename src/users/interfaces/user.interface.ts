@@ -6,6 +6,7 @@ export interface User {
   password: string;
   email: string;
   role: string;
+  imagePath: string;
 }
 
 export class SerializedUser {
@@ -13,6 +14,7 @@ export class SerializedUser {
   username: string;
   email: string;
   role: string;
+  imagePath: string;
 
   @Exclude()
   password: string;
