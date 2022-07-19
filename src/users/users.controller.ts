@@ -17,8 +17,9 @@ import { UserNotFoundException } from './exceptions/UserNotFound.exception';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { IsAuthenticatedGaurd } from 'src/auth/utils/LocalGuard';
+// import { IsAuthenticatedGaurd } from 'src/auth/utils/LocalGuard';
 import { Request } from 'express';
+import { IsAdminGaurd } from './Gaurds/isAdmin.gaurd';
 
 @Controller('users')
 export class UsersController {
@@ -31,7 +32,8 @@ export class UsersController {
     return this.usersService.findUsers();
   }
 
-  @UseGuards(IsAuthenticatedGaurd)
+  // @UseGuards(IsAuthenticatedGaurd)
+  @UseGuards(IsAdminGaurd)
   @UseInterceptors(ClassSerializerInterceptor)
   @Get(':username')
   async getUserByUsername(@Param('username') username: string) {
