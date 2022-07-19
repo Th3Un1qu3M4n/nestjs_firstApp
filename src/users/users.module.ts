@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { ValidateUserMiddleware } from './middlewares/validate-user.middleware';
-import { isAdminMiddleware } from './middlewares/authorization';
+// import { isAdminMiddleware } from './middlewares/authorization';
 
 @Module({
   imports: [],
@@ -14,11 +14,12 @@ import { isAdminMiddleware } from './middlewares/authorization';
     },
   ],
 })
-export class UsersModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(ValidateUserMiddleware).forRoutes({
-      path: 'users/:username',
-      method: RequestMethod.GET,
-    });
-  }
-}
+export class UsersModule {}
+// export class UsersModule implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer.apply(ValidateUserMiddleware).forRoutes({
+//       path: 'users/:username',
+//       method: RequestMethod.GET,
+//     });
+//   }
+// }

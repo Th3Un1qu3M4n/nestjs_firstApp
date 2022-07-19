@@ -17,6 +17,11 @@ export class User {
   })
   email: string;
 
+  @Column({
+    nullable: true,
+  })
+  imagePath: string;
+
   @Column()
   password: string;
 

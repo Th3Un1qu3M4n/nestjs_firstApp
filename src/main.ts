@@ -4,6 +4,7 @@ import * as session from 'express-session';
 import * as passport from 'passport';
 import config from './config/keys';
 import { AppDataSource } from './typeorm/AppDataSource';
+// import { TypeormStore } from 'connect-typeorm/out';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -44,7 +45,7 @@ async function bootstrap() {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        maxAge: 60 * 1000,
+        maxAge: 10 * 60 * 1000, //min * sec * milliSeconds
       },
       // store: new TypeormStore({ limitSubquery: false }).connect(sessionRepository),
     }),
