@@ -42,7 +42,7 @@ export class UsersService {
 
   async findUsers() {
     const userRepository = AppDataSource.getRepository(UserEntity);
-    console.log('searching username');
+    console.log('searching all users');
     return (await userRepository.find()).map((user) => plainToClass(SerializedUser, user));
   }
   findUserByUsername(username: string) {

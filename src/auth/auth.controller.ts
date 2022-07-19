@@ -1,13 +1,20 @@
-import { Controller, Get, Post, Req, Session, UseGuards } from '@nestjs/common';
-import { Request } from 'express';
-import { LocalGuard, IsAuthenticatedGaurd } from './utils/LocalGuard';
+import { Body, Controller, Get, Inject, Post, Req, Request, Session, UseGuards } from '@nestjs/common';
+import { LocalGuard } from './utils/LocalGuard';
+import { AuthService } from './auth.service';
+import { UserAuthDTO } from './dto/user-auth-dto';
 
 @Controller('auth')
 export class AuthController {
+  constructor(@Inject('AUTH_SERVICE') private readonly authService: AuthService) {}
   @UseGuards(LocalGuard)
   @Post('login')
   async login() {
     return 'User Logged In';
+  }
+
+  @Post('JWT')
+  async JWTLoginRoute(@Body() userAuthDTO: UserAuthDTO) {
+    return this.authService.signin(userAuthDTO);
   }
 
   @Get('')
@@ -16,9 +23,9 @@ export class AuthController {
     return session;
   }
 
-  @UseGuards(IsAuthenticatedGaurd)
-  @Get('status')
-  async getAuthStatus(@Req() req: Request) {
-    return req.user;
-  }
+  // @UseGuards(IsAuthenticatedGaurd)
+  // @Get('status')
+  // async getAuthStatus(@Req() req: Request) {
+  //   return req.user;
+  // }
 }

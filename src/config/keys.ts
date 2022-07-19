@@ -6,4 +6,5 @@ export default {
   mysql_pwd: 'nestjsUser',
   mysql_db: 'nestjs_firstproject',
   session_secret: 'some_secretForSession',
+  jwt_secret: 'some_JWT_secret',
 };
