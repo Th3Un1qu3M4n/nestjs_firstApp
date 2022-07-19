@@ -3,9 +3,6 @@ import { AppModule } from './app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import config from './config/keys';
-import { TypeormStore } from 'connect-typeorm/out';
-import { getRepository } from 'typeorm';
-import { SessionEntity } from './typeorm';
 import { AppDataSource } from './typeorm/AppDataSource';
 
 async function bootstrap() {

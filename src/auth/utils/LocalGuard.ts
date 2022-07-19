@@ -12,6 +12,9 @@ export class LocalGuard extends AuthGuard('local') {
 }
 
 @Injectable()
+export class JwtAuthGuard extends AuthGuard('jwt') {}
+
+@Injectable()
 export class IsAuthenticatedGaurd implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<any> {
     const req = context.switchToHttp().getRequest();
